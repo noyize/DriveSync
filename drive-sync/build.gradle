@@ -11,7 +11,7 @@ android {
         minSdk 21
         targetSdk 31
         versionCode 1
-        versionName "1.0"
+        versionName "1.0-alpha04"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
@@ -48,7 +48,7 @@ afterEvaluate {
 
                 groupId = 'com.github.noyize'
                 artifactId = 'drive-sync'
-                version = '1.0-alpha03'
+                version = '1.0-alpha04'
             }
         }
     }
