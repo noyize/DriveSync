@@ -48,7 +48,7 @@ afterEvaluate {
 
                 groupId = 'com.github.noyize'
                 artifactId = 'drive-sync'
-                version = '1.0-alpha02'
+                version = '1.0-alpha03'
             }
         }
     }
