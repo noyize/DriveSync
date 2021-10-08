@@ -14,6 +14,7 @@ import java.io.ByteArrayOutputStream
 import java.io.OutputStream
 import java.util.*
 import com.google.gson.reflect.TypeToken;
+import kotlinx.coroutines.flow.flowOn
 
 class DriveSync<T>(
     private val application: Application,
@@ -34,8 +35,7 @@ class DriveSync<T>(
     }
 
 
-    suspend fun backup(listItem: List<T>) = flow<SyncState<T>>{
-        withContext(Dispatchers.IO) {
+     fun backup(listItem: List<T>) = flow<SyncState<T>>{
             kotlin.runCatching {
                 emit(SyncState.Syncing)
                 try {
@@ -65,10 +65,9 @@ class DriveSync<T>(
                     emit(SyncState.Error(e.message ?: "Error restoring notes"))
                 }
             }
-        }
-    }
+    }.flowOn(Dispatchers.IO)
 
-    suspend fun restore() = flow<SyncState<List<T>>> {
+     fun restore() = flow {
         withContext(Dispatchers.IO) {
             kotlin.runCatching {
                 emit(SyncState.Syncing)
@@ -98,5 +97,5 @@ class DriveSync<T>(
                 }
             }
         }
-    }
+    }.flowOn(Dispatchers.IO)
 }
